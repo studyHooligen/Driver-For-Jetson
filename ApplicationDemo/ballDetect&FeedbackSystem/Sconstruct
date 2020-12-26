@@ -12,7 +12,8 @@ if RUNTIME_PLATFORM == 1:
                 LIBS = ['opencv_world420'],
                 LIBPATH = ['E:/opencv/build/x64/vc15/lib'],
                 CPPPATH = ['E:/opencv/build/include/opencv2/',
-                        'E:/opencv/build/include/'])
+                        'E:/opencv/build/include/',
+                        'E:/publicAlgorithmLibrary/eigen-3.3.9/Eigen'])
 
 else:
         files = os.listdir(openCvPath)

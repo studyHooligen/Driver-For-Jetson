@@ -1,0 +1,35 @@
+import sys
+import os
+
+openCvPath = '/usr/lib/aarch64-linux-gnu'
+
+# 运行时环境配置，默认0代表Linux，1代表Windows
+RUNTIME_PLATFORM = 0
+
+if RUNTIME_PLATFORM == 1:
+        Program('main',
+                Glob('.cpp'),
+                LIBS = ['opencv_world420'],
+                LIBPATH = ['E:/opencv/build/x64/vc15/lib'],
+                CPPPATH = ['E:/opencv/build/include/opencv2/',
+                        'E:/opencv/build/include/',
+                        'E:/publicAlgorithmLibrary/eigen-3.3.9/Eigen'])
+
+else:
+        files = os.listdir(openCvPath)
+
+        CVLIB_list = []
+
+        for iFile in files:
+                if iFile.startswith('libopencv'):
+                        CVLIB_list.append(iFile.replace('.4.1.1','').replace('.4.1',''))
+
+        print(CVLIB_list)
+
+        Program('main',
+                ['main.cpp','../source/IMX219.cpp'],
+                LIBPATH = [openCvPath],
+                LIBS = CVLIB_list,       # use "$ sudo find / -iname "libopencv*""
+                CPPPATH = ['../include','../source',
+                        '/usr/include/opencv4/opencv2',
+                        '/usr/include/opencv4'])

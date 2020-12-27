@@ -1,0 +1,3 @@
+Program('main',
+        ['main.cpp','serialPort.cpp'],
+        CPPPATH = ['../'])
